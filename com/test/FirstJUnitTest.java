@@ -10,6 +10,7 @@ public class FirstJUnitTest {
 	int x = 2;
 	int y = 5;
 
+	// test case
 	@Test
 	public void test() {
 		assertTrue(x == (1 + 1));
@@ -32,6 +33,12 @@ public class FirstJUnitTest {
 		MyCalcObject myCalcObj = new MyCalcObject();
 		int result = myCalcObj.basicDivide(12, 4);
 		assertEquals(3, result);
+	}
+	
+	@Test(expected = ArithmeticException.class)
+	public void testDivideByZero(){
+		MyCalcObject myCalcObj = new MyCalcObject();
+		int result = myCalcObj.basicDivide(12, 0);
 	}
 
 }
