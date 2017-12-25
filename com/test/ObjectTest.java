@@ -1,8 +1,16 @@
 package com.test;
 
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.endsWith;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.*;
+
+import java.io.Serializable;
 
 import org.junit.Test;
 
@@ -66,6 +74,23 @@ public class ObjectTest {
 		
 	}
 	
+	@Test
+	public void isTest(){
+		String testString = "test";
+		
+		assertThat("Tested instance of", testString, instanceOf(Serializable.class));
+		assertThat("Tested is A", testString, isA(Serializable.class));		
+		
+	}	
 	
+	@Test
+	public void contains(){
+		String testString = "(this is a test, of a string.";
+		
+		assertThat("Tested all of", testString, allOf(startsWith("("),
+															containsString(","),
+															endsWith(".")));
+		
+	}	
 	
 }
