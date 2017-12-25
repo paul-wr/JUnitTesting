@@ -1,5 +1,7 @@
 package com.test;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -45,6 +47,23 @@ public class ObjectTest {
 		int[] nums2 = {1, 2, 3};
 		
 		assertArrayEquals("Two array equals", nums1, nums2);
+	}
+	
+	@Test
+	public void nullTest(){
+		String testString = null;
+		
+		assertThat("Null value expected!", testString, nullValue());
+		
+		
+	}
+	
+	@Test
+	public void notNullTest(){
+		String testString = "";
+		
+		assertThat("Not Null value expected!", testString, notNullValue());
+		
 	}
 	
 	
