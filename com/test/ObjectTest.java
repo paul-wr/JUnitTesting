@@ -5,24 +5,62 @@ import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.either;
 import static org.hamcrest.CoreMatchers.endsWith;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.isA;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.*;
+import static org.junit.Assume.*;
+
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import org.hamcrest.Matcher;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ObjectTest {
 	String s1 = "test";
 	String s2 = new String("test");
+	
+	// run date setup before tests
+	@BeforeClass
+	public static void dateSetup(){
+		Calendar date = Calendar.getInstance();
+		System.out.println("This runs Before class.	");
+	}
+	
+	// run date setup before tests
+		@AfterClass
+		public static void runAfter(){
+			System.out.println("This runs After class.	");
+		}
+	
+	@Before
+	public void codeToRunBeforeTests(){
+		System.out.println("This runs before each test.");
+	}
+	
+	@After
+	public void codeToRunAfterTests(){
+		System.out.println("This runs after each test.");
+	}
+
 
 	@Test
 	public void testSame() {
@@ -107,5 +145,32 @@ public class ObjectTest {
 
 
 	}
-
+	
+	
+	@Test
+	public void assumeTesing(){
+		int i = 1;
+		
+		assumeThat("Wrong assumption!", i, not(equalTo(1)));
+		
+	}
+	
+	@Test
+	public void assumeTrueTest(){
+		boolean confirm = false;		
+		assumeTrue("Wrong assumption!", confirm);
+		
+	}
+	
+	@Test
+	public void assumeNoExceptionTesing(){
+		int y = 2;
+		 try {
+		    y = y / 10;
+		   } catch (ArithmeticException e) {
+		     assumeNoException(e);
+		   }
+		
+	}
+	
 }
