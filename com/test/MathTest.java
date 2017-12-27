@@ -9,7 +9,7 @@ import com.java.math.MathCalculations;
 
 public class MathTest {
 
-	@Test
+	@Test(timeout=2000)
 	public void addTest() {
 		MathCalculations mathCalc = new MathCalculations();
 		assertEquals("Something went wrong!", 4, mathCalc.add(2, 2));
